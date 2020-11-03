@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="maven-vjv-influx" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/vjv-influx" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-talaria" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/talaria" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-vjv-elasticsearch-measurement" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/vjv-elasticsearch-measurement" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-vjv-mybatis" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/vjv-mybatis" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-vjv-redis" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/vjv-redis" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-vjv-elasticsearch" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/vjv-elasticsearch" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="central" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-vjv-websocket" />
+      <option name="name" value="GitHub VCANUS Apache Maven Packages" />
+      <option name="url" value="https://maven.pkg.github.com/vcanus/vjv-websocket" />
+    </remote-repository>
+  </component>
+</project>
