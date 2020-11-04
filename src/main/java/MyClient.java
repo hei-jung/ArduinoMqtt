@@ -6,25 +6,26 @@ import java.io.IOException;
 
 public class MyClient implements MqttCallback {
 
+    private static int DATA_SIZE = 1024;
     private MqttClient client;
     private MqttConnectOptions option;
     private Connection nats;
 
-    public MyClient init(String serverURI, String clientId) {
-        // MQTT 서버 연결
+    public MyClient init(String mqttURI, String natsURI, String clientId) {
+        // Connect to MQTT server
         option = new MqttConnectOptions();
         option.setCleanSession(true);
         option.setKeepAliveInterval(30);
         try {
-            client = new MqttClient(serverURI, clientId);
+            client = new MqttClient(mqttURI, clientId);
             client.setCallback(this);
             client.connect(option);
         } catch (MqttException e) {
             e.printStackTrace();
         }
-        // NATS 서버 연결
+        // Connect to NATS server
         try {
-            nats = Nats.connect("nats://192.168.50.124:4222");
+            nats = Nats.connect(natsURI);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -52,10 +53,13 @@ public class MyClient implements MqttCallback {
     }
 
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        System.out.println(s + ": " + mqttMessage.toString());
-        System.out.println("total size: " + mqttMessage.toString().length());
-        nats.publish("sensor", mqttMessage.getPayload());
+        byte[] payload = mqttMessage.getPayload();
+        String data = mqttMessage.toString();//[1.xx,1.xx,1.xx,...]
 
+        System.out.println(payload.length + " from " + s + ": " + data);
+
+        //nats.publish("sensor", data.getBytes(StandardCharsets.UTF_8));
+        nats.publish("sensor", payload);
     }
 
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
