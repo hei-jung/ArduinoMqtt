@@ -9,10 +9,10 @@ import java.time.Duration;
 public class SubscribeSync {
     public static void main(String[] args) {
         try {
-            Connection nats = Nats.connect("nats://192.168.50.124:4222");
+            Connection nats = Nats.connect("nats://192.168.0.4:4222");
             boolean flag = true;
             while (flag) {
-                Subscription sub = nats.subscribe("sensor");
+                Subscription sub = nats.subscribe("test.1024");
                 if (sub == null) {
                     flag = false;
                 }

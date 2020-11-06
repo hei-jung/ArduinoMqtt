@@ -2,11 +2,12 @@ import io.nats.client.Connection;
 import io.nats.client.Nats;
 import org.eclipse.paho.client.mqttv3.*;
 
-import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class MyClient implements MqttCallback {
 
-    private static int DATA_SIZE = 1024;
+    //    private static final int DATA_SIZE = 1024;
     private MqttClient client;
     private MqttConnectOptions option;
     private Connection nats;
@@ -26,9 +27,7 @@ public class MyClient implements MqttCallback {
         // Connect to NATS server
         try {
             nats = Nats.connect(natsURI);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return this;
@@ -54,12 +53,29 @@ public class MyClient implements MqttCallback {
 
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
         byte[] payload = mqttMessage.getPayload();
-        String data = mqttMessage.toString();//[1.xx,1.xx,1.xx,...]
+        String data = mqttMessage.toString();//format: [1.xx,1.xx,1.xx,...]
 
         System.out.println(payload.length + " from " + s + ": " + data);
 
-        //nats.publish("sensor", data.getBytes(StandardCharsets.UTF_8));
-        nats.publish("sensor", payload);
+        //String[] data2 = data.split(",");
+        //double[] values = new double[data2.length];
+        //byte[] message = new byte[values.length];
+
+        //for (int i = 0; i < values.length; i++) {
+        //    values[i] = Double.parseDouble(data2[i]);
+        //    message[i] = (byte) values[i];
+        //    //message = data2[i].getBytes(StandardCharsets.UTF_8);
+        //}
+
+        //nats.publish("test.1024", message);
+        //nats.publish("test.1024", data.getBytes(StandardCharsets.UTF_8));
+        nats.publish("test.1024", payload);
+
+        // test publishing single double data
+//        double value = Double.parseDouble(data);
+//        System.out.println("convert to double: " + value);
+//        String message = String.format("%f", value);
+//        nats.publish("test.1024", message.getBytes(StandardCharsets.UTF_8));
     }
 
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
