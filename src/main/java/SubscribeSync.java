@@ -19,12 +19,17 @@ public class SubscribeSync {
                     flag = false;
                 }
                 Message message = sub.nextMessage(Duration.ZERO);
+
+                /* MyClient.java 에서 mqtt 메시지를 double 배열로 변환해서 보낼 경우 */
                 Convert convert = new Convert();
                 byte[] data = message.getData();
                 double[] values = convert.byteToDoubleArray(data);
-                convert.showArray(values);
-                //String str = new String(message.getData(), StandardCharsets.UTF_8);
-                //System.out.println((str.length() / 8) + " from " + message.getSubject() + ": " + str);
+                System.out.print(values.length + " from " + message.getSubject() + ": ");
+                convert.printDoubleArray(values);
+
+                /* MyClient.java 에서 mqtt 메시지 그대로 보낼 경우 */
+//                String str = new String(message.getData(), StandardCharsets.UTF_8);
+//                System.out.println((str.length() / 8) + " from " + message.getSubject() + ": " + str);
             }
             nats.close();
         } catch (Exception e) {

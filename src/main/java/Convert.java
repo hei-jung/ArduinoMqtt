@@ -27,7 +27,7 @@ public class Convert {
         return doubles;
     }
 
-    public void showArray(double[] doubles) {
+    public void printDoubleArray(double[] doubles) {
         for (double d : doubles) {
             System.out.print(d + "\t");
         }
